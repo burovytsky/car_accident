@@ -1,16 +1,17 @@
-<%--
+<%@ page import="accident.model.Accident" %><%--
   Created by IntelliJ IDEA.
   User: cns
-  Date: 26.10.2020
-  Time: 13:25
+  Date: 27.10.2020
+  Time: 22:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<!-- Required meta tags -->
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -25,9 +26,8 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Create incident</title>
+    <title>Edit incident</title>
 </head>
-
 <body>
 <div class="container pt-3">
     <div class="row">
@@ -36,14 +36,16 @@
                 Edit incident
             </div>
             <div class="card-body">
-                <form action="<c:url value='/save'/>" method='POST'>
+                <form action="<c:url value='/update?id=${accident.id}'/>" method='POST'>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" class="form-control" name="name" id="name" value="${accident.name}">
                         <label for="text">Text</label>
-                        <input type="text" class="form-control" name="text" id="text">
+                        <input type="text" class="form-control" name="text" id="text"
+                               value="${accident.text}">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" name="address" id="address">
+                        <input type="text" class="form-control" name="address" id="address"
+                               value="${accident.address}">
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

@@ -14,19 +14,21 @@ public class AccidentMem {
 
 
     private AccidentMem() {
-        Accident accident1 = new Accident(1, "name1", "text1", "address1");
-        Accident accident2 = new Accident(2, "name2", "text2", "address2");
-        Accident accident3 = new Accident(3, "name3", "text3", "address3");
+        Accident accident1 = new Accident( "name1", "text1", "address1");
+        Accident accident2 = new Accident( "name2", "text2", "address2");
+        Accident accident3 = new Accident( "name3", "text3", "address3");
+        accident1.setId(1);
+        accident2.setId(2);
+        accident3.setId(3);
         accidents.put(1, accident1);
         accidents.put(2, accident2);
         accidents.put(3, accident3);
     }
 
     public void add(Accident accident) {
-        if (accident.getId() == 0) {
-            accident.setId(ACCIDENT_ID.incrementAndGet());
-        }
-        accidents.put(accident.getId(), accident);
+        int id = ACCIDENT_ID.incrementAndGet();
+        accident.setId(id);
+        accidents.put(id, accident);
     }
 
     public void edit(Accident accident) {
