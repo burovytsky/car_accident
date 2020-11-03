@@ -10,8 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem {
     private final HashMap<Integer, Accident> accidents = new HashMap<>();
-    private static final AccidentMem INST = new AccidentMem();
-    private static final AtomicInteger ACCIDENT_ID = new AtomicInteger(4);
+    private static final AtomicInteger ACCIDENT_ID = new AtomicInteger(3);
 
 
     private AccidentMem() {
@@ -23,10 +22,6 @@ public class AccidentMem {
         accidents.put(3, accident3);
     }
 
-    public static AccidentMem instOf() {
-        return INST;
-    }
-
     public void add(Accident accident) {
         if (accident.getId() == 0) {
             accident.setId(ACCIDENT_ID.incrementAndGet());
@@ -34,8 +29,18 @@ public class AccidentMem {
         accidents.put(accident.getId(), accident);
     }
 
+    public void edit(Accident accident) {
+        if (accidents.containsKey(accident.getId())) {
+            accidents.replace(accident.getId(), accident);
+        }
+    }
+
     public boolean remove(int id) {
         return accidents.remove(id) != null;
+    }
+
+    public Accident getAccidentById(int id) {
+        return accidents.get(id);
     }
 
     public Collection<Accident> getAllAccident() {

@@ -22,6 +22,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Accident</title>
 </head>
@@ -40,23 +41,41 @@
                         <th scope="col">Name</th>
                         <th scope="col">Text</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Del./Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Accident accident : AccidentMem.instOf().getAllAccident()) { %>
-                    <tr>
-                        <td><%= accident.getId() %>
-                        </td>
-                        <td><%= accident.getName() %>
-                        </td>
-                        <td><%= accident.getText() %>
-                        </td>
-                        <td><%= accident.getAddress() %>
-                        </td>
-                    </tr>
-                    <% } %>
+                    <c:forEach var="accident" items="${accidents}">
+                        <tr>
+                            <td>
+                                <c:out value="${accident.id}"/>
+                            </td>
+                            <td>
+                                <c:out value="${accident.name}"/>
+                            </td>
+                            <td>
+                                <c:out value="${accident.text}"/>
+                            </td>
+                            <td>
+                                <c:out value="${accident.address}"/>
+                            </td>
+                            <td>
+                                photo
+                            </td>
+                            <td>
+                                <a href='<c:url value="/delete?id=${accident.id}"/>'>
+                                    <i class="fa fa-remove mr-3 ml-3"></i>
+                                </a>
+                                <a href='<c:url value="/edit?id=${accident.id}"/>'>
+                                    <i class="fa fa-edit mr-3"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
+                <a type="button" class="btn btn-primary" href="<c:url value='/create'/>">Create incident</a>
             </div>
         </div>
     </div>
