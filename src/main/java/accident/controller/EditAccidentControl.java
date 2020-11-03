@@ -19,14 +19,20 @@ public class EditAccidentControl {
     }
 
     @GetMapping("/edit")
-    public String update(@RequestParam("id") int id, Model model) {
+    public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("accident", accidents.getAccidentById(id));
         return "accident/edit";
     }
 
     @PostMapping("/update")
-    public String save(@ModelAttribute Accident accident) {
+    public String update(@ModelAttribute Accident accident) {
         accidents.edit(accident);
+        return "redirect:/";
+    }
+
+    @GetMapping("/remove")
+    public String remove(@RequestParam("id") int id) {
+        accidents.remove(id);
         return "redirect:/";
     }
 }

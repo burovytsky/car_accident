@@ -44,6 +44,12 @@
                         <input type="text" class="form-control" name="text" id="text">
                         <label for="address">Address</label>
                         <input type="text" class="form-control" name="address" id="address">
+                        <label for="select">Choose type</label>
+                            <select name="type.id" id="select" class="form-control">
+                                <c:forEach var="type" items="${types}">
+                                    <option value="${type.id}">${type.name}</option>
+                                </c:forEach>
+                            </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

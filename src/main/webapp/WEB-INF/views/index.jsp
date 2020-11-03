@@ -41,6 +41,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Text</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Photo</th>
                         <th scope="col">Del./Edit</th>
                     </tr>
@@ -61,10 +62,13 @@
                                 <c:out value="${accident.address}"/>
                             </td>
                             <td>
+                                <c:out value="${accident.type.name}"/>
+                            </td>
+                            <td>
                                 photo
                             </td>
                             <td>
-                                <a href='<c:url value="/delete?id=${accident.id}"/>'>
+                                <a href='<c:url value="/remove?id=${accident.id}"/>'>
                                     <i class="fa fa-remove mr-3 ml-3"></i>
                                 </a>
                                 <a href='<c:url value="/edit?id=${accident.id}"/>'>
