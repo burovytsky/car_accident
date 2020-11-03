@@ -44,10 +44,16 @@
                         <input type="text" class="form-control" name="text" id="text">
                         <label for="address">Address</label>
                         <input type="text" class="form-control" name="address" id="address">
-                        <label for="select">Choose type</label>
-                            <select name="type.id" id="select" class="form-control">
+                        <label for="selectType">Choose type</label>
+                            <select name="type.id" id="selectType" class="form-control">
                                 <c:forEach var="type" items="${types}">
                                     <option value="${type.id}">${type.name}</option>
+                                </c:forEach>
+                            </select>
+                        <label for="selectArticle">article </label>
+                            <select name="rIds" id="selectArticle" class="form-control" multiple>
+                                <c:forEach var="rule" items="${rules}" >
+                                    <option value="${rule.id}">${rule.name}</option>
                                 </c:forEach>
                             </select>
                     </div>

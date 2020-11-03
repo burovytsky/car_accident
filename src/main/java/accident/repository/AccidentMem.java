@@ -2,11 +2,10 @@ package accident.repository;
 
 import accident.model.Accident;
 import accident.model.AccidentType;
+import accident.model.Rule;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
@@ -16,6 +15,8 @@ public class AccidentMem {
     private final List<AccidentType> accidentTypes = List.of(AccidentType.of(0, "Two cars"),
             AccidentType.of(1, "Car and human"),
             AccidentType.of(2, "Car and bike"));
+    private final Set<Rule> rules = Set.of(Rule.of(1, "Rule1"),
+            Rule.of(2, "Rule2"), Rule.of(3, "Rule3"));
 
 
     private AccidentMem() {
@@ -49,6 +50,22 @@ public class AccidentMem {
 
     public List<AccidentType> getAccidentTypes() {
         return accidentTypes;
+    }
+
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public Set<Rule> getSelectedRules(String[] ids) {
+        Set<Rule> rsl = new HashSet<>();
+        for (int i = 0; i < ids.length; i++) {
+            for (Rule rule : rules) {
+                if (rule.getId() == Integer.parseInt(ids[i])) {
+                    rsl.add(rule);
+                }
+            }
+        }
+        return rsl;
     }
 
     public Accident getAccidentById(int id) {

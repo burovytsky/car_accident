@@ -42,6 +42,7 @@
                         <th scope="col">Text</th>
                         <th scope="col">Address</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Articles</th>
                         <th scope="col">Photo</th>
                         <th scope="col">Del./Edit</th>
                     </tr>
@@ -63,6 +64,11 @@
                             </td>
                             <td>
                                 <c:out value="${accident.type.name}"/>
+                            </td>
+                            <td>
+                                <c:forEach var="rule" items="${accident.rules}">
+                                    <c:out value="${rule.name}"/>
+                                </c:forEach>
                             </td>
                             <td>
                                 photo
