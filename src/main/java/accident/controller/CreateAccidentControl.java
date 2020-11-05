@@ -4,16 +4,13 @@ import accident.model.Accident;
 import accident.model.AccidentType;
 import accident.model.Rule;
 import accident.repository.AccidentMem;
-import org.junit.runner.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -35,8 +32,7 @@ public class CreateAccidentControl {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident, HttpServletRequest request) {
-        String[] ids = request.getParameterValues("rIds");
+    public String save(@ModelAttribute Accident accident, @RequestParam("rIds") String[] ids)  {
         accident.setRules(accidents.getSelectedRules(ids));
         accidents.add(accident);
         return "redirect:/";
